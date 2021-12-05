@@ -17,7 +17,7 @@ flutter pub add --dev mek_lints --git-url https://github.com/BreX900/mek_lints.g
 ```yaml
 include: package:mek_lints/dart.yaml
 ```
-
+or
 ```yaml
 include: package:mek_lints/flutter.yaml
 ```
