@@ -7,9 +7,12 @@ analyzer:
     annotate_overrides: warning
     implementation_imports: warning
     always_use_package_imports: warning
+    unused_import: warning
+    unawaited_futures: warning
 
 # Rules: https://dart-lang.github.io/linter/lints/
 linter:
   rules:
     always_use_package_imports: true
     unnecessary_brace_in_string_interps: false
+    unawaited_futures: true
