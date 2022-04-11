@@ -1,18 +1,30 @@
 include: package:flutter_lints/flutter.yaml
 
+# Rules: https://dart-lang.github.io/linter/lints/
 analyzer:
   errors:
-    avoid_print: warning
-    exhaustive_cases: warning
-    annotate_overrides: warning
-    implementation_imports: warning
     always_use_package_imports: warning
     unused_import: warning
     unawaited_futures: warning
+    always_declare_return_types: error
 
-# Rules: https://dart-lang.github.io/linter/lints/
+    # Core: https://github.com/dart-lang/lints/blob/main/lib/core.yaml
+    list_remove_unrelated_type: error
+    iterable_contains_unrelated_type: error
+
+    # Recommended: https://github.com/dart-lang/lints/blob/main/lib/recommended.yaml
+    annotate_overrides: warning
+    avoid_return_types_on_setters: warning
+    exhaustive_cases: warning
+    implementation_imports: warning
+
+    # Flutter: https://github.com/flutter/packages/blob/master/packages/flutter_lints/lib/flutter.yaml
+    avoid_print: warning
+
+
 linter:
   rules:
     always_use_package_imports: true
-    unnecessary_brace_in_string_interps: false
+    unused_import: true
     unawaited_futures: true
+    always_declare_return_types: true
