@@ -1,3 +1,6 @@
+## 0.3.0
+- Updated `lints` and `flutter_lints` packages
+
 ## 0.2.0
 - Added `avoid_return_types_on_setters: warning`
 - Added `avoid_return_types_on_setters: warning`
