@@ -1,3 +1,13 @@
+## 1.1.0
+- Updated SDK constraint to `>=3.0.0 <4.0.0`.
+- Added new warnings: `avoid_unnecessary_containers`, `body_might_complete_normally_nullable`,
+ `curly_braces_in_flow_control_structures`, `depend_on_referenced_packages`, `duplicate_export`, `file_names`,
+ `override_on_non_overriding_member`, `prefer_const_declarations`, `prefer_final_locals`, `prefer_single_quotes`,
+ `sort_child_properties_last`, `unnecessary_cast`, `use_super_parameters`
+- Added new errors: `cast_from_null_always_fails`, `cast_from_nullable_always_fails`,
+ `deprecated_colon_for_default_value`
+- Added new flutter warnings: `use_colored_box`, `use_decorated_box`
+
 ## 0.3.0
 - Updated `lints` and `flutter_lints` packages
 

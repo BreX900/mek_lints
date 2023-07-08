@@ -1,36 +1,51 @@
 include: package:flutter_lints/flutter.yaml
 
 linter:
-  rules: 
+  rules:
     - always_declare_return_types
     - always_use_package_imports
-    - collection_methods_unrelated_type
     - combinators_ordering
     - discarded_futures
+    - prefer_final_locals
+    - prefer_single_quotes
     - unawaited_futures
     - unreachable_from_main
+    - use_colored_box
+    - use_decorated_box
+    - use_super_parameters
 
 analyzer:
-  errors: 
+  errors:
     always_declare_return_types: error
     always_use_package_imports: warning
     annotate_overrides: warning
     avoid_print: warning
     avoid_return_types_on_setters: warning
-    collection_methods_unrelated_type: error
-    combinators_ordering: warning
-    discarded_futures: warning
-    exhaustive_cases: warning
-    implementation_imports: warning
-    iterable_contains_unrelated_type: error
-    list_remove_unrelated_type: error
-    unawaited_futures: warning
-    body_might_complete_normally_catch_error: warning
+    avoid_unnecessary_containers: warning
     body_might_complete_normally_nullable: warning
     cast_from_null_always_fails: error
     cast_from_nullable_always_fails: error
+    collection_methods_unrelated_type: error
+    combinators_ordering: warning
+    curly_braces_in_flow_control_structures: warning
+    depend_on_referenced_packages: warning
     deprecated_colon_for_default_value: error
+    discarded_futures: warning
     duplicate_export: warning
+    exhaustive_cases: warning
+    file_names: warning
+    implementation_imports: warning
+    iterable_contains_unrelated_type: error
+    list_remove_unrelated_type: error
     override_on_non_overriding_member: warning
+    prefer_const_declarations: warning
+    prefer_final_locals: warning
+    prefer_single_quotes: warning
+    sort_child_properties_last: warning
+    unawaited_futures: warning
+    unnecessary_cast: warning
     unnecessary_import: warning
     unused_import: warning
+    use_colored_box: warning
+    use_decorated_box: warning
+    use_super_parameters: warning
