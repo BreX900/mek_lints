@@ -1,0 +1,18 @@
+include: package:mek_lints/dart.yaml
+
+linter:
+  # https://dart.dev/tools/linter-rules
+  rules:
+    - do_not_use_environment
+    - prefer_asserts_with_message
+    - public_member_api_docs
+
+# https://dart.dev/tools/diagnostic-messages
+analyzer:
+  errors:
+    do_not_use_environment: warning
+    prefer_asserts_with_message: info
+    public_member_api_docs: info
+
+# Additional information about this file can be found at
+# https://dart.dev/guides/language/analysis-options
