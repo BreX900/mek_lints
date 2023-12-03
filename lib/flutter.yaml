@@ -1,51 +1,28 @@
-include: package:flutter_lints/flutter.yaml
+include: package:mek_lints/dart.yaml
 
 linter:
+  # https://dart.dev/tools/linter-rules
   rules:
-    - always_declare_return_types
-    - always_use_package_imports
-    - combinators_ordering
-    - discarded_futures
-    - prefer_final_locals
-    - prefer_single_quotes
-    - unawaited_futures
-    - unreachable_from_main
+    - avoid_unnecessary_containers
+    - avoid_web_libraries_in_flutter
+    - sized_box_for_whitespace
+    - sized_box_shrink_expand
+    - sort_child_properties_last
     - use_colored_box
     - use_decorated_box
-    - use_super_parameters
+    - use_key_in_widget_constructors
 
+# https://dart.dev/tools/diagnostic-messages
 analyzer:
   errors:
-    always_declare_return_types: error
-    always_use_package_imports: warning
-    annotate_overrides: warning
-    avoid_print: warning
-    avoid_return_types_on_setters: warning
     avoid_unnecessary_containers: warning
-    body_might_complete_normally_nullable: warning
-    cast_from_null_always_fails: error
-    cast_from_nullable_always_fails: error
-    collection_methods_unrelated_type: error
-    combinators_ordering: warning
-    curly_braces_in_flow_control_structures: warning
-    depend_on_referenced_packages: warning
-    deprecated_colon_for_default_value: error
-    discarded_futures: warning
-    duplicate_export: warning
-    exhaustive_cases: warning
-    file_names: warning
-    implementation_imports: warning
-    iterable_contains_unrelated_type: error
-    list_remove_unrelated_type: error
-    override_on_non_overriding_member: warning
-    prefer_const_declarations: warning
-    prefer_final_locals: warning
-    prefer_single_quotes: warning
+    avoid_web_libraries_in_flutter: warning
+    sized_box_for_whitespace: warning
+    sized_box_shrink_expand: warning
     sort_child_properties_last: warning
-    unawaited_futures: warning
-    unnecessary_cast: warning
-    unnecessary_import: warning
-    unused_import: warning
     use_colored_box: warning
     use_decorated_box: warning
-    use_super_parameters: warning
+    use_key_in_widget_constructors: warning
+
+# Additional information about this file can be found at
+# https://dart.dev/guides/language/analysis-options
