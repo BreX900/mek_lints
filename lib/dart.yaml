@@ -64,7 +64,6 @@ linter:
     - file_names
     - hash_and_equals
     - implementation_imports
-    - implicit_call_tearoffs
     - join_return_with_assignment
     - leading_newlines_in_multiline_strings
     - library_annotations
@@ -102,7 +101,6 @@ linter:
     - prefer_const_constructors_in_immutables
     - prefer_const_declarations
     - prefer_const_literals_to_create_immutables
-    - prefer_constructors_over_static_methods
     - prefer_contains
     - prefer_final_fields
     - prefer_final_in_for_each
@@ -244,7 +242,6 @@ analyzer:
     file_names: warning
     hash_and_equals: warning
     implementation_imports: warning
-    implicit_call_tearoffs: warning
     join_return_with_assignment: warning
     leading_newlines_in_multiline_strings: warning
     library_annotations: warning
@@ -282,7 +279,6 @@ analyzer:
     prefer_const_constructors_in_immutables: warning
     prefer_const_declarations: warning
     prefer_const_literals_to_create_immutables: warning
-    prefer_constructors_over_static_methods: warning
     prefer_contains: warning
     prefer_final_fields: warning
     prefer_final_in_for_each: warning
