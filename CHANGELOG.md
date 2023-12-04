@@ -1,3 +1,7 @@
+## 3.0.0
+- Enabled almost all rules.
+- Removed lints and flutter_lints packages.
+
 ## 2.0.0
 - Updated SDK constraint to `>=3.0.0 <4.0.0`.
 - Added new warnings: `avoid_unnecessary_containers`, `body_might_complete_normally_nullable`,
