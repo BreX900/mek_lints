@@ -63,6 +63,7 @@ linter:
     - exhaustive_cases
     - file_names
     - hash_and_equals
+    - invalid_case_patterns
     - implementation_imports
     - join_return_with_assignment
     - leading_newlines_in_multiline_strings
@@ -144,10 +145,10 @@ linter:
     - unnecessary_getters_setters
     - unnecessary_lambdas
     - unnecessary_late
-    - unnecessary_library_directive
     - unnecessary_new
     - unnecessary_null_aware_assignments
     - unnecessary_null_aware_operator_on_extension_on_nullable
+    - unnecessary_null_checks
     - unnecessary_null_in_if_null_operators
     - unnecessary_nullable_for_final_variable_declarations
     - unnecessary_overrides
@@ -166,12 +167,14 @@ linter:
     - use_function_type_syntax_for_parameters
     - use_if_null_to_convert_nulls_to_bools
     - use_is_even_rather_than_modulo
+    - use_late_for_private_fields_and_variables
     - use_named_constants
     - use_raw_strings
     - use_rethrow_when_possible
     - use_setters_to_change_properties
     - use_string_buffers
     - use_string_in_part_of_directives
+    - use_super_parameters
     - use_test_throws_matchers
     - use_to_and_as_if_applicable
     - valid_regexps
@@ -198,7 +201,7 @@ analyzer:
     avoid_init_to_null: warning
     avoid_multiple_declarations_per_line: warning
     avoid_null_checks_in_equality_operators: warning
-    avoid_positional_boolean_parameters: warning
+    avoid_positional_boolean_parameters: info
     avoid_print: warning
     avoid_private_typedef_functions: warning
     avoid_redundant_argument_values: warning
@@ -241,6 +244,7 @@ analyzer:
     exhaustive_cases: warning
     file_names: warning
     hash_and_equals: warning
+    invalid_case_patterns: warning
     implementation_imports: warning
     join_return_with_assignment: warning
     leading_newlines_in_multiline_strings: warning
@@ -322,10 +326,10 @@ analyzer:
     unnecessary_getters_setters: warning
     unnecessary_lambdas: warning
     unnecessary_late: warning
-    unnecessary_library_directive: warning
     unnecessary_new: warning
     unnecessary_null_aware_assignments: warning
     unnecessary_null_aware_operator_on_extension_on_nullable: warning
+    unnecessary_null_checks: warning
     unnecessary_null_in_if_null_operators: warning
     unnecessary_nullable_for_final_variable_declarations: warning
     unnecessary_overrides: warning
@@ -344,12 +348,14 @@ analyzer:
     use_function_type_syntax_for_parameters: warning
     use_if_null_to_convert_nulls_to_bools: warning
     use_is_even_rather_than_modulo: warning
+    use_late_for_private_fields_and_variables: warning
     use_named_constants: warning
     use_raw_strings: warning
     use_rethrow_when_possible: warning
     use_setters_to_change_properties: warning
     use_string_buffers: warning
     use_string_in_part_of_directives: warning
+    use_super_parameters: warning
     use_test_throws_matchers: warning
     use_to_and_as_if_applicable: warning
     valid_regexps: warning

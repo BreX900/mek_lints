@@ -34,7 +34,7 @@ const _dartRules = <String, ErrorSeverity?>{
   'avoid_js_rounded_ints': ErrorSeverity.NONE,
   'avoid_multiple_declarations_per_line': null,
   'avoid_null_checks_in_equality_operators': null,
-  'avoid_positional_boolean_parameters': null,
+  'avoid_positional_boolean_parameters': ErrorSeverity.INFO,
   'avoid_print': null,
   'avoid_private_typedef_functions': null,
   'avoid_redundant_argument_values': null,
@@ -79,6 +79,8 @@ const _dartRules = <String, ErrorSeverity?>{
   'exhaustive_cases': null,
   'file_names': null,
   'hash_and_equals': null,
+  'implicit_reopen': ErrorSeverity.NONE, // Maybe...
+  'invalid_case_patterns': null,
   'implementation_imports': null,
   'implicit_call_tearoffs': ErrorSeverity.NONE,
   'join_return_with_assignment': null,
@@ -90,7 +92,8 @@ const _dartRules = <String, ErrorSeverity?>{
   'lines_longer_than_80_chars': ErrorSeverity.NONE,
   'literal_only_boolean_expressions': null,
   'matching_super_parameters': null,
-  'missing_whitespace_between_adjacent_strings': null,
+  'missing_whitespace_between_adjacent_strings': ErrorSeverity.NONE,
+  'no_default_cases': ErrorSeverity.NONE,
   'no_adjacent_strings_in_list': null,
   'no_duplicate_case_values': null,
   'no_leading_underscores_for_library_prefixes': null,
@@ -174,10 +177,11 @@ const _dartRules = <String, ErrorSeverity?>{
   'unnecessary_getters_setters': null,
   'unnecessary_lambdas': null,
   'unnecessary_late': null,
-  'unnecessary_library_directive': null,
+  'unnecessary_library_directive': ErrorSeverity.NONE,
   'unnecessary_new': null,
   'unnecessary_null_aware_assignments': null,
   'unnecessary_null_aware_operator_on_extension_on_nullable': null,
+  'unnecessary_null_checks': null,
   'unnecessary_null_in_if_null_operators': null,
   'unnecessary_nullable_for_final_variable_declarations': null,
   'unnecessary_overrides': null,
@@ -196,12 +200,14 @@ const _dartRules = <String, ErrorSeverity?>{
   'use_function_type_syntax_for_parameters': null,
   'use_if_null_to_convert_nulls_to_bools': null,
   'use_is_even_rather_than_modulo': null,
+  'use_late_for_private_fields_and_variables': null,
   'use_named_constants': null,
   'use_raw_strings': null,
   'use_rethrow_when_possible': null,
   'use_setters_to_change_properties': null,
   'use_string_buffers': null,
   'use_string_in_part_of_directives': null,
+  'use_super_parameters': null,
   'use_test_throws_matchers': null,
   'use_to_and_as_if_applicable': null,
   'valid_regexps': null,
@@ -214,6 +220,7 @@ const _flutterRules = <String, ErrorSeverity?>{
   'sized_box_for_whitespace': null,
   'sized_box_shrink_expand': null,
   'sort_child_properties_last': null,
+  'use_build_context_synchronously': null,
   'use_colored_box': null,
   'use_decorated_box': null,
   'use_key_in_widget_constructors': null,
@@ -234,8 +241,10 @@ const _allRules = {
 void main() async {
   registerLintRules();
 
-  final sdkRules =
-      Analyzer.facade.registeredRules.where((e) => e.state.isStable).map((e) => e.name).toSet();
+  final sdkRules = Analyzer.facade.registeredRules
+      .where((e) => e.state.isStable || e.state.isExperimental)
+      .map((e) => e.name)
+      .toSet();
   final sdkErrors =
       Map.fromEntries(errorCodeValues.map((e) => MapEntry(e.name.toLowerCase(), e.errorSeverity)));
 

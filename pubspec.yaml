@@ -2,7 +2,7 @@ name: mek_lints
 description: Mek packages and plugins lints rules.
 homepage: https://github.com/BreX900/mek_lints
 repository: https://github.com/BreX900/mek_lints
-version: 3.0.0
+version: 4.0.0
 
 # dart pub publish
 

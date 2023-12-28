@@ -1,3 +1,9 @@
+## 4.0.0
+- Enabled experimental rules: `invalid_case_patterns`, `unnecessary_null_checks`, 
+ `use_late_for_private_fields_and_variables`, `use_super_parameters`
+- Change error level for `avoid_positional_boolean_parameters` to `info`
+- Removed `unnecessary_library_directive` rule
+
 ## 3.0.0
 - Enabled almost all rules.
 - Removed lints and flutter_lints packages.

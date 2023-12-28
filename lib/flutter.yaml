@@ -8,6 +8,7 @@ linter:
     - sized_box_for_whitespace
     - sized_box_shrink_expand
     - sort_child_properties_last
+    - use_build_context_synchronously
     - use_colored_box
     - use_decorated_box
     - use_key_in_widget_constructors
@@ -20,6 +21,7 @@ analyzer:
     sized_box_for_whitespace: warning
     sized_box_shrink_expand: warning
     sort_child_properties_last: warning
+    use_build_context_synchronously: warning
     use_colored_box: warning
     use_decorated_box: warning
     use_key_in_widget_constructors: warning
