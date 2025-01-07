@@ -2,8 +2,8 @@ import 'dart:collection';
 import 'dart:io';
 
 import 'package:analyzer/error/error.dart';
+import 'package:analyzer/src/lint/registry.dart';
 import 'package:analyzer/src/lint/state.dart';
-import 'package:linter/src/analyzer.dart';
 import 'package:linter/src/rules.dart';
 import 'package:yaml_edit/yaml_edit.dart';
 
@@ -15,6 +15,7 @@ const _dartRules = <String, ErrorSeverity?>{
   'always_put_required_named_parameters_first': ErrorSeverity.NONE,
   'always_specify_types': ErrorSeverity.NONE,
   'always_use_package_imports': null,
+  'annotate_redeclares': null,
   'annotate_overrides': null,
   'avoid_annotating_with_dynamic': null,
   'avoid_bool_literals_in_conditional_expressions': null,
@@ -29,6 +30,7 @@ const _dartRules = <String, ErrorSeverity?>{
   'avoid_field_initializers_in_const_classes': null,
   'avoid_final_parameters': null,
   'avoid_function_literals_in_foreach_calls': null,
+  'avoid_futureor_void': null,
   'avoid_implementing_value_types': null,
   'avoid_init_to_null': null,
   'avoid_js_rounded_ints': ErrorSeverity.NONE,
@@ -72,6 +74,7 @@ const _dartRules = <String, ErrorSeverity?>{
   'deprecated_member_use_from_same_package': null,
   'directives_ordering': null,
   'discarded_futures': null,
+  'document_ignores': ErrorSeverity.NONE,
   'empty_catches': null,
   'empty_constructor_bodies': null,
   'empty_statements': null,
@@ -81,6 +84,7 @@ const _dartRules = <String, ErrorSeverity?>{
   'hash_and_equals': null,
   'implicit_reopen': ErrorSeverity.NONE, // Maybe...
   'invalid_case_patterns': null,
+  'invalid_runtime_check_with_js_interop_types': ErrorSeverity.NONE,
   'implementation_imports': null,
   'implicit_call_tearoffs': ErrorSeverity.NONE,
   'join_return_with_assignment': null,
@@ -92,7 +96,8 @@ const _dartRules = <String, ErrorSeverity?>{
   'lines_longer_than_80_chars': ErrorSeverity.NONE,
   'literal_only_boolean_expressions': null,
   'matching_super_parameters': null,
-  'missing_whitespace_between_adjacent_strings': ErrorSeverity.NONE,
+  'missing_code_block_language_in_doc_comment': null,
+  'missing_whitespace_between_adjacent_strings': null,
   'no_default_cases': ErrorSeverity.NONE,
   'no_adjacent_strings_in_list': null,
   'no_duplicate_case_values': null,
@@ -108,6 +113,7 @@ const _dartRules = <String, ErrorSeverity?>{
   'null_check_on_nullable_type_parameter': null,
   'null_closures': null,
   'omit_local_variable_types': null,
+  'omit_obvious_local_variable_types': ErrorSeverity.NONE,
   'only_throw_errors': null,
   'one_member_abstracts': ErrorSeverity.NONE,
   'overridden_fields': null,
@@ -161,6 +167,7 @@ const _dartRules = <String, ErrorSeverity?>{
   'sort_constructors_first': ErrorSeverity.NONE,
   'sort_pub_dependencies': ErrorSeverity.NONE,
   'sort_unnamed_constructors_first': null,
+  'specify_nonobvious_local_variable_types': ErrorSeverity.NONE,
   'test_types_in_equals': null,
   'throw_in_finally': null,
   'tighten_type_of_initializing_formals': null,
@@ -168,6 +175,7 @@ const _dartRules = <String, ErrorSeverity?>{
   'type_init_formals': null,
   'type_literal_in_constant_pattern': null,
   'unawaited_futures': null,
+  'unintended_html_in_doc_comment': null,
   'unnecessary_await_in_return': ErrorSeverity.NONE,
   'unnecessary_brace_in_string_interps': null,
   'unnecessary_breaks': null,
@@ -210,6 +218,7 @@ const _dartRules = <String, ErrorSeverity?>{
   'use_super_parameters': null,
   'use_test_throws_matchers': null,
   'use_to_and_as_if_applicable': null,
+  'use_truncating_division': null,
   'valid_regexps': null,
   'void_checks': null,
 };
@@ -229,6 +238,7 @@ const _packageRules = <String, ErrorSeverity?>{
   'do_not_use_environment': null,
   'prefer_asserts_with_message': ErrorSeverity.INFO,
   'public_member_api_docs': ErrorSeverity.INFO,
+  'unnecessary_library_name': null,
   // Move to flutter package rules
   'diagnostic_describe_all_properties': ErrorSeverity.NONE,
 };
@@ -239,9 +249,11 @@ const _allRules = {
 };
 
 void main() async {
+  print(Directory.current.path);
+
   registerLintRules();
 
-  final sdkRules = Analyzer.facade.registeredRules
+  final sdkRules = Registry.ruleRegistry
       .where((e) => e.state.isStable || e.state.isExperimental)
       .map((e) => e.name)
       .toSet();
@@ -313,5 +325,5 @@ void _writeFile({
   editor.update(['linter', 'rules'], displayErrors.keys.toList());
   editor.update(['analyzer', 'errors'], displayErrors);
 
-  File('./lib/${fileName}.yaml').writeAsStringSync('$editor');
+  File('./lib/$fileName.yaml').writeAsStringSync('$editor');
 }

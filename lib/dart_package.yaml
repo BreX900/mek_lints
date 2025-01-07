@@ -6,6 +6,7 @@ linter:
     - do_not_use_environment
     - prefer_asserts_with_message
     - public_member_api_docs
+    - unnecessary_library_name
 
 # https://dart.dev/tools/diagnostic-messages
 analyzer:
@@ -13,6 +14,7 @@ analyzer:
     do_not_use_environment: warning
     prefer_asserts_with_message: info
     public_member_api_docs: info
+    unnecessary_library_name: warning
 
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options

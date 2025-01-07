@@ -1,3 +1,7 @@
+## 5.0.0
+- Enabled rules: `annotate_redeclares`, `avoid_futureor_void`, `missing_code_block_language_in_doc_comment`,
+  `unintended_html_in_doc_comment`, `use_truncating_division`, `unnecessary_library_name`
+
 ## 4.0.0
 - Enabled experimental rules: `invalid_case_patterns`, `unnecessary_null_checks`, 
  `use_late_for_private_fields_and_variables`, `use_super_parameters`

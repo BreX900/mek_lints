@@ -4,6 +4,7 @@ linter:
   rules:
     - always_declare_return_types
     - always_use_package_imports
+    - annotate_redeclares
     - annotate_overrides
     - avoid_annotating_with_dynamic
     - avoid_bool_literals_in_conditional_expressions
@@ -16,6 +17,7 @@ linter:
     - avoid_field_initializers_in_const_classes
     - avoid_final_parameters
     - avoid_function_literals_in_foreach_calls
+    - avoid_futureor_void
     - avoid_implementing_value_types
     - avoid_init_to_null
     - avoid_multiple_declarations_per_line
@@ -73,6 +75,7 @@ linter:
     - library_private_types_in_public_api
     - literal_only_boolean_expressions
     - matching_super_parameters
+    - missing_code_block_language_in_doc_comment
     - missing_whitespace_between_adjacent_strings
     - no_adjacent_strings_in_list
     - no_duplicate_case_values
@@ -138,6 +141,7 @@ linter:
     - type_init_formals
     - type_literal_in_constant_pattern
     - unawaited_futures
+    - unintended_html_in_doc_comment
     - unnecessary_brace_in_string_interps
     - unnecessary_breaks
     - unnecessary_const
@@ -177,6 +181,7 @@ linter:
     - use_super_parameters
     - use_test_throws_matchers
     - use_to_and_as_if_applicable
+    - use_truncating_division
     - valid_regexps
     - void_checks
 
@@ -185,6 +190,7 @@ analyzer:
   errors:
     always_declare_return_types: error
     always_use_package_imports: warning
+    annotate_redeclares: warning
     annotate_overrides: warning
     avoid_annotating_with_dynamic: warning
     avoid_bool_literals_in_conditional_expressions: warning
@@ -197,6 +203,7 @@ analyzer:
     avoid_field_initializers_in_const_classes: warning
     avoid_final_parameters: warning
     avoid_function_literals_in_foreach_calls: warning
+    avoid_futureor_void: warning
     avoid_implementing_value_types: warning
     avoid_init_to_null: warning
     avoid_multiple_declarations_per_line: warning
@@ -254,6 +261,7 @@ analyzer:
     library_private_types_in_public_api: warning
     literal_only_boolean_expressions: warning
     matching_super_parameters: warning
+    missing_code_block_language_in_doc_comment: warning
     missing_whitespace_between_adjacent_strings: warning
     no_adjacent_strings_in_list: warning
     no_duplicate_case_values: warning
@@ -319,6 +327,7 @@ analyzer:
     type_init_formals: warning
     type_literal_in_constant_pattern: warning
     unawaited_futures: warning
+    unintended_html_in_doc_comment: warning
     unnecessary_brace_in_string_interps: warning
     unnecessary_breaks: warning
     unnecessary_const: warning
@@ -358,6 +367,7 @@ analyzer:
     use_super_parameters: warning
     use_test_throws_matchers: warning
     use_to_and_as_if_applicable: warning
+    use_truncating_division: warning
     valid_regexps: warning
     void_checks: warning
 
