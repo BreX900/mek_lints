@@ -1,8 +1,11 @@
 
 
+## 6.0.1
+- removed rule: `unsafe_variance`
+
 ## 6.0.0
 - enabled rules: `strict_top_level_inference`, `switch_on_type`, `unnecessary_async`, `unnecessary_ignore`,
-  `unnecessary_unawaited`
+  `unnecessary_unawaited`, `unsafe_variance`
 
 ## 5.0.0
 - Enabled rules: `annotate_redeclares`, `avoid_futureor_void`, `missing_code_block_language_in_doc_comment`,

@@ -46,7 +46,8 @@ const _dartRules = <String, DiagnosticSeverity?>{
   'avoid_setters_without_getters': null,
   'avoid_shadowing_type_parameters': null,
   'avoid_single_cascade_in_expression_statements': null,
-  'avoid_types_on_closure_parameters': DiagnosticSeverity.NONE, // Check in future versions
+  'avoid_types_on_closure_parameters':
+      DiagnosticSeverity.NONE, // Check in future versions
   'avoid_slow_async_io': null,
   'avoid_type_to_string': null,
   'avoid_types_as_parameter_names': null,
@@ -160,7 +161,8 @@ const _dartRules = <String, DiagnosticSeverity?>{
   'prefer_void_to_null': null,
   'provide_deprecation_message': null,
   'recursive_getters': null,
-  'require_trailing_commas': DiagnosticSeverity.NONE, // Check in future versions
+  'require_trailing_commas':
+      DiagnosticSeverity.NONE, // Check in future versions
   'secure_pubspec_urls': null,
   'slash_for_doc_comments': null,
   'sort_constructors_first': DiagnosticSeverity.NONE,
@@ -262,25 +264,31 @@ void main() async {
 
   final rules = await fetchLinterRules('3.9.2');
 
-  final sdkRules =
-      rules.where((e) => !e.state.isRemoved && !e.state.isDeprecated).map((e) => e.name).toSet();
-  final sdkErrors =
-      Map.fromEntries(diagnosticCodeValues.map((e) => MapEntry(e.name.toLowerCase(), e.severity)));
+  final sdkRules = rules
+      .where((e) => !e.state.isRemoved && !e.state.isDeprecated)
+      .map((e) => e.name)
+      .toSet();
+  final sdkErrors = Map.fromEntries(diagnosticCodeValues
+      .map((e) => MapEntry(e.name.toLowerCase(), e.severity)));
 
-  final missingRules = sdkRules.where((e) => !_allRules.containsKey(e)).toList();
+  final missingRules =
+      sdkRules.where((e) => !_allRules.containsKey(e)).toList();
   if (missingRules.isNotEmpty) {
     print('Missing rules: ${missingRules.map((e) => '\'$e\'').join(', ')}');
     exit(-1);
   }
 
-  Map<String, DiagnosticSeverity> filterErrors(Map<String, DiagnosticSeverity?> customErrors) {
+  Map<String, DiagnosticSeverity> filterErrors(
+      Map<String, DiagnosticSeverity?> customErrors) {
     return Map.fromEntries(customErrors.entries.map((entry) {
       final sdkSeverity = sdkErrors[entry.key] ?? DiagnosticSeverity.NONE;
       final customSeverity = entry.value ?? DiagnosticSeverity.WARNING;
 
       if (customSeverity == DiagnosticSeverity.NONE) {
-        if (sdkSeverity != DiagnosticSeverity.NONE && !_disabledRules.contains(entry.key)) {
-          print('You should not disable this rule "${entry.key}" as it is active in the dart sdk.\n'
+        if (sdkSeverity != DiagnosticSeverity.NONE &&
+            !_disabledRules.contains(entry.key)) {
+          print(
+              'You should not disable this rule "${entry.key}" as it is active in the dart sdk.\n'
               'SDK: $sdkSeverity | CUSTOM: $customSeverity');
           exit(-1);
         }
