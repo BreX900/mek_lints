@@ -1,3 +1,9 @@
+
+
+## 6.0.0
+- enabled rules: `strict_top_level_inference`, `switch_on_type`, `unnecessary_async`, `unnecessary_ignore`,
+  `unnecessary_unawaited`
+
 ## 5.0.0
 - Enabled rules: `annotate_redeclares`, `avoid_futureor_void`, `missing_code_block_language_in_doc_comment`,
   `unintended_html_in_doc_comment`, `use_truncating_division`, `unnecessary_library_name`

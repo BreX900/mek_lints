@@ -134,6 +134,8 @@ linter:
     - secure_pubspec_urls
     - slash_for_doc_comments
     - sort_unnamed_constructors_first
+    - strict_top_level_inference
+    - switch_on_type
     - test_types_in_equals
     - throw_in_finally
     - tighten_type_of_initializing_formals
@@ -142,11 +144,13 @@ linter:
     - type_literal_in_constant_pattern
     - unawaited_futures
     - unintended_html_in_doc_comment
+    - unnecessary_async
     - unnecessary_brace_in_string_interps
     - unnecessary_breaks
     - unnecessary_const
     - unnecessary_constructor_name
     - unnecessary_getters_setters
+    - unnecessary_ignore
     - unnecessary_lambdas
     - unnecessary_late
     - unnecessary_new
@@ -163,6 +167,7 @@ linter:
     - unnecessary_string_interpolations
     - unnecessary_this
     - unnecessary_to_list_in_spreads
+    - unnecessary_unawaited
     - unreachable_from_main
     - unrelated_type_equality_checks
     - unsafe_html
@@ -320,6 +325,8 @@ analyzer:
     secure_pubspec_urls: warning
     slash_for_doc_comments: warning
     sort_unnamed_constructors_first: warning
+    strict_top_level_inference: error
+    switch_on_type: error
     test_types_in_equals: warning
     throw_in_finally: warning
     tighten_type_of_initializing_formals: warning
@@ -328,11 +335,13 @@ analyzer:
     type_literal_in_constant_pattern: warning
     unawaited_futures: warning
     unintended_html_in_doc_comment: warning
+    unnecessary_async: warning
     unnecessary_brace_in_string_interps: warning
     unnecessary_breaks: warning
     unnecessary_const: warning
     unnecessary_constructor_name: warning
     unnecessary_getters_setters: warning
+    unnecessary_ignore: warning
     unnecessary_lambdas: warning
     unnecessary_late: warning
     unnecessary_new: warning
@@ -349,6 +358,7 @@ analyzer:
     unnecessary_string_interpolations: warning
     unnecessary_this: warning
     unnecessary_to_list_in_spreads: warning
+    unnecessary_unawaited: warning
     unreachable_from_main: warning
     unrelated_type_equality_checks: warning
     unsafe_html: warning
