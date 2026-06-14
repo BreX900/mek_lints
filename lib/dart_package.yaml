@@ -4,16 +4,24 @@ linter:
   # https://dart.dev/tools/linter-rules
   rules:
     - do_not_use_environment
+    - package_api_docs
+    - package_names
+    - package_prefixed_library_names
     - prefer_asserts_with_message
     - public_member_api_docs
+    - remove_deprecations_in_breaking_versions
     - unnecessary_library_name
 
 # https://dart.dev/tools/diagnostic-messages
 analyzer:
   errors:
     do_not_use_environment: warning
+    package_api_docs: warning
+    package_names: warning
+    package_prefixed_library_names: warning
     prefer_asserts_with_message: info
     public_member_api_docs: info
+    remove_deprecations_in_breaking_versions: warning
     unnecessary_library_name: warning
 
 # Additional information about this file can be found at

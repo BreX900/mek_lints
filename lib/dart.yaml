@@ -1,4 +1,3 @@
-
 linter:
   # https://dart.dev/tools/linter-rules
   rules:
@@ -79,11 +78,9 @@ linter:
     - missing_whitespace_between_adjacent_strings
     - no_adjacent_strings_in_list
     - no_duplicate_case_values
-    - no_leading_underscores_for_library_prefixes
     - no_leading_underscores_for_local_identifiers
     - no_literal_bool_comparisons
-    - no_logic_in_create_state
-    - no_runtimeType_toString
+    - no_runtimetype_tostring
     - no_self_assignments
     - no_wildcard_variable_uses
     - non_constant_identifier_names
@@ -93,10 +90,6 @@ linter:
     - omit_local_variable_types
     - only_throw_errors
     - overridden_fields
-    - package_api_docs
-    - package_names
-    - package_prefixed_library_names
-    - parameter_assignments
     - prefer_adjacent_string_concatenation
     - prefer_asserts_in_initializer_lists
     - prefer_collection_literals
@@ -109,7 +102,7 @@ linter:
     - prefer_final_fields
     - prefer_final_in_for_each
     - prefer_final_locals
-    - prefer_for_elements_to_map_fromIterable
+    - prefer_for_elements_to_map_fromiterable
     - prefer_foreach
     - prefer_function_declarations_over_variables
     - prefer_generic_function_type_aliases
@@ -121,7 +114,7 @@ linter:
     - prefer_is_empty
     - prefer_is_not_empty
     - prefer_is_not_operator
-    - prefer_iterable_whereType
+    - prefer_iterable_wheretype
     - prefer_mixin
     - prefer_null_aware_method_calls
     - prefer_null_aware_operators
@@ -132,6 +125,7 @@ linter:
     - provide_deprecation_message
     - recursive_getters
     - secure_pubspec_urls
+    - simplify_variable_pattern
     - slash_for_doc_comments
     - sort_unnamed_constructors_first
     - strict_top_level_inference
@@ -188,6 +182,7 @@ linter:
     - use_to_and_as_if_applicable
     - use_truncating_division
     - valid_regexps
+    - var_with_no_type_annotation
     - void_checks
 
 # https://dart.dev/tools/diagnostic-messages
@@ -270,11 +265,9 @@ analyzer:
     missing_whitespace_between_adjacent_strings: warning
     no_adjacent_strings_in_list: warning
     no_duplicate_case_values: warning
-    no_leading_underscores_for_library_prefixes: warning
     no_leading_underscores_for_local_identifiers: warning
     no_literal_bool_comparisons: warning
-    no_logic_in_create_state: warning
-    no_runtimeType_toString: warning
+    no_runtimetype_tostring: warning
     no_self_assignments: warning
     no_wildcard_variable_uses: warning
     non_constant_identifier_names: warning
@@ -284,10 +277,6 @@ analyzer:
     omit_local_variable_types: warning
     only_throw_errors: warning
     overridden_fields: warning
-    package_api_docs: warning
-    package_names: warning
-    package_prefixed_library_names: warning
-    parameter_assignments: warning
     prefer_adjacent_string_concatenation: warning
     prefer_asserts_in_initializer_lists: warning
     prefer_collection_literals: warning
@@ -300,7 +289,7 @@ analyzer:
     prefer_final_fields: warning
     prefer_final_in_for_each: warning
     prefer_final_locals: warning
-    prefer_for_elements_to_map_fromIterable: warning
+    prefer_for_elements_to_map_fromiterable: warning
     prefer_foreach: warning
     prefer_function_declarations_over_variables: warning
     prefer_generic_function_type_aliases: warning
@@ -312,7 +301,7 @@ analyzer:
     prefer_is_empty: warning
     prefer_is_not_empty: warning
     prefer_is_not_operator: warning
-    prefer_iterable_whereType: warning
+    prefer_iterable_wheretype: warning
     prefer_mixin: warning
     prefer_null_aware_method_calls: warning
     prefer_null_aware_operators: warning
@@ -323,6 +312,7 @@ analyzer:
     provide_deprecation_message: warning
     recursive_getters: warning
     secure_pubspec_urls: warning
+    simplify_variable_pattern: warning
     slash_for_doc_comments: warning
     sort_unnamed_constructors_first: warning
     strict_top_level_inference: error
@@ -379,6 +369,7 @@ analyzer:
     use_to_and_as_if_applicable: warning
     use_truncating_division: warning
     valid_regexps: warning
+    var_with_no_type_annotation: warning
     void_checks: warning
 
 # Additional information about this file can be found at

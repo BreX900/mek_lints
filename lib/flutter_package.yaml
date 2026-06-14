@@ -1,20 +1,14 @@
-include: package:mek_lints/flutter.yaml
+include:
+  - package:mek_lints/dart_package.yaml
+  - package:mek_lints/flutter.yaml
 
 linter:
   # https://dart.dev/tools/linter-rules
-  rules:
-    - do_not_use_environment
-    - prefer_asserts_with_message
-    - public_member_api_docs
-    - unnecessary_library_name
+  rules: []
 
 # https://dart.dev/tools/diagnostic-messages
 analyzer:
-  errors:
-    do_not_use_environment: warning
-    prefer_asserts_with_message: info
-    public_member_api_docs: info
-    unnecessary_library_name: warning
+  errors: {}
 
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options

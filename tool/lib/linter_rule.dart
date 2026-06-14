@@ -95,16 +95,16 @@ class LinterRule {
 
   /// Converts JSON to a [LinterRule].
   factory LinterRule.fromJson(Map<String, dynamic> json) => LinterRule(
-        name: json['name'] as String,
-        description: json['description'] as String,
-        details: json['details'] as String,
-        categories: (json['categories'] as List).cast<String>(),
-        state: LinterRuleState._fromJson(json['state'] as String),
-        incompatible: (json['incompatible'] as List).cast<String>(),
-        sets: (json['sets'] as List).cast<String>(),
-        fixStatus: FixStatus._fromJson(json['fixStatus'] as String),
-        sinceDartSdk: json['sinceDartSdk'] as String,
-      );
+    name: json['name'] as String,
+    description: json['description'] as String,
+    details: json['details'] as String,
+    categories: (json['categories'] as List).cast<String>(),
+    state: LinterRuleState._fromJson(json['state'] as String),
+    incompatible: (json['incompatible'] as List).cast<String>(),
+    sets: (json['sets'] as List).cast<String>(),
+    fixStatus: FixStatus._fromJson(json['fixStatus'] as String),
+    sinceDartSdk: json['sinceDartSdk'] as String,
+  );
 
   /// The unique name of the linter rule.
   final String name;

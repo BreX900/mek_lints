@@ -7,5 +7,5 @@ environment:
 dependencies:
   analyzer: any
   yaml: ^3.1.3
-  yaml_edit: ^2.2.2
+  yaml_edit: ^2.2.4
   http: ^1.6.0

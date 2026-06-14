@@ -4,9 +4,11 @@ import 'package:http/http.dart';
 import 'package:tool/linter_rule.dart';
 
 Future<List<LinterRule>> fetchLinterRules(String dartVersion) async {
-  final response = await get(Uri.parse(
-    'https://raw.githubusercontent.com/dart-lang/sdk/refs/tags/$dartVersion/pkg/linter/tool/machine/rules.json',
-  ));
+  final response = await get(
+    Uri.parse(
+      'https://raw.githubusercontent.com/dart-lang/sdk/refs/tags/$dartVersion/pkg/linter/tool/machine/rules.json',
+    ),
+  );
 
   final json = jsonDecode(response.body) as List<dynamic>;
 

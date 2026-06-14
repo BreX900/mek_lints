@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:analyzer/error/error.dart';
 import 'package:tool/fetch_lint_rules.dart';
+import 'package:tool/linter_rule.dart';
 import 'package:yaml_edit/yaml_edit.dart';
 
 /// https://dart.dev/tools/linter-rules
@@ -46,8 +47,8 @@ const _dartRules = <String, DiagnosticSeverity?>{
   'avoid_setters_without_getters': null,
   'avoid_shadowing_type_parameters': null,
   'avoid_single_cascade_in_expression_statements': null,
-  'avoid_types_on_closure_parameters':
-      DiagnosticSeverity.NONE, // Check in future versions
+  // You cannot define the type of callback parameters where the parameter type is not defined
+  'avoid_types_on_closure_parameters': DiagnosticSeverity.NONE,
   'avoid_slow_async_io': null,
   'avoid_type_to_string': null,
   'avoid_types_as_parameter_names': null,
@@ -100,11 +101,10 @@ const _dartRules = <String, DiagnosticSeverity?>{
   'no_default_cases': DiagnosticSeverity.NONE,
   'no_adjacent_strings_in_list': null,
   'no_duplicate_case_values': null,
-  'no_leading_underscores_for_library_prefixes': null,
+  'no_leading_underscores_for_library_prefixes': DiagnosticSeverity.NONE,
   'no_leading_underscores_for_local_identifiers': null,
   'no_literal_bool_comparisons': null,
-  'no_logic_in_create_state': null,
-  'no_runtimeType_toString': null,
+  'no_runtimetype_tostring': null,
   'no_self_assignments': null,
   'no_wildcard_variable_uses': null,
   'non_constant_identifier_names': null,
@@ -117,10 +117,8 @@ const _dartRules = <String, DiagnosticSeverity?>{
   'one_member_abstracts': DiagnosticSeverity.NONE,
   'omit_obvious_property_types': DiagnosticSeverity.NONE,
   'overridden_fields': null,
-  'package_api_docs': null,
-  'package_names': null,
-  'package_prefixed_library_names': null,
-  'parameter_assignments': null,
+  // We should enable it?
+  'parameter_assignments': DiagnosticSeverity.NONE,
   'prefer_adjacent_string_concatenation': null,
   'prefer_asserts_in_initializer_lists': null,
   'prefer_collection_literals': null,
@@ -137,7 +135,7 @@ const _dartRules = <String, DiagnosticSeverity?>{
   'prefer_final_in_for_each': null,
   'prefer_final_locals': null,
   'prefer_final_parameters': DiagnosticSeverity.NONE,
-  'prefer_for_elements_to_map_fromIterable': null,
+  'prefer_for_elements_to_map_fromiterable': null,
   'prefer_foreach': null,
   'prefer_function_declarations_over_variables': null,
   'prefer_generic_function_type_aliases': null,
@@ -150,7 +148,7 @@ const _dartRules = <String, DiagnosticSeverity?>{
   'prefer_is_empty': null,
   'prefer_is_not_empty': null,
   'prefer_is_not_operator': null,
-  'prefer_iterable_whereType': null,
+  'prefer_iterable_wheretype': null,
   'prefer_mixin': null,
   'prefer_null_aware_method_calls': null,
   'prefer_null_aware_operators': null,
@@ -164,6 +162,7 @@ const _dartRules = <String, DiagnosticSeverity?>{
   'require_trailing_commas':
       DiagnosticSeverity.NONE, // Check in future versions
   'secure_pubspec_urls': null,
+  'simplify_variable_pattern': null,
   'slash_for_doc_comments': null,
   'sort_constructors_first': DiagnosticSeverity.NONE,
   'sort_pub_dependencies': DiagnosticSeverity.NONE,
@@ -230,9 +229,11 @@ const _dartRules = <String, DiagnosticSeverity?>{
   'use_to_and_as_if_applicable': null,
   'use_truncating_division': null,
   'valid_regexps': null,
+  'var_with_no_type_annotation': null,
   'void_checks': null,
 };
 const _flutterRules = <String, DiagnosticSeverity?>{
+  'no_logic_in_create_state': null,
   'avoid_unnecessary_containers': null,
   'avoid_web_libraries_in_flutter': null,
   'flutter_style_todos': DiagnosticSeverity.NONE,
@@ -244,102 +245,187 @@ const _flutterRules = <String, DiagnosticSeverity?>{
   'use_decorated_box': null,
   'use_key_in_widget_constructors': null,
 };
-const _packageRules = <String, DiagnosticSeverity?>{
+const _dartPackageRules = <String, DiagnosticSeverity?>{
   'do_not_use_environment': null,
+  'package_api_docs': null,
+  'package_names': null,
+  'package_prefixed_library_names': null,
   'prefer_asserts_with_message': DiagnosticSeverity.INFO,
   'public_member_api_docs': DiagnosticSeverity.INFO,
+  'remove_deprecations_in_breaking_versions': null,
   'unnecessary_library_name': null,
-  // Move to flutter package rules
+};
+const _flutterPackageRules = <String, DiagnosticSeverity?>{
   'diagnostic_describe_all_properties': DiagnosticSeverity.NONE,
 };
 const _allRules = {
   ..._dartRules,
   ..._flutterRules,
-  ..._packageRules,
+  ..._dartPackageRules,
+  ..._flutterPackageRules,
 };
 const _disabledRules = ['unnecessary_final'];
 
 void main() async {
   print(Directory.current.path);
 
-  final rules = await fetchLinterRules('3.9.2');
+  final rules = await fetchLinterRules('3.12.1');
 
-  final sdkRules = rules
-      .where((e) => !e.state.isRemoved && !e.state.isDeprecated)
-      .map((e) => e.name)
-      .toSet();
-  final sdkErrors = Map.fromEntries(diagnosticCodeValues
-      .map((e) => MapEntry(e.name.toLowerCase(), e.severity)));
+  final sdkRules = rules.where(
+    (e) => !e.state.isRemoved && !e.state.isDeprecated,
+  );
+  final sdkRuleNames = sdkRules.map((e) => e.name).toSet();
 
-  final missingRules =
-      sdkRules.where((e) => !_allRules.containsKey(e)).toList();
+  _writeReadmeFile(sdkRules);
+
+  final sdkErrors = Map.fromEntries(
+    diagnosticCodeValues.map((e) => MapEntry(e.lowerCaseName, e.severity)),
+  );
+
+  final missingRules = sdkRuleNames
+      .where((e) => !_allRules.containsKey(e))
+      .toList();
   if (missingRules.isNotEmpty) {
     print('Missing rules: ${missingRules.map((e) => '\'$e\'').join(', ')}');
     exit(-1);
   }
 
   Map<String, DiagnosticSeverity> filterErrors(
-      Map<String, DiagnosticSeverity?> customErrors) {
-    return Map.fromEntries(customErrors.entries.map((entry) {
-      final sdkSeverity = sdkErrors[entry.key] ?? DiagnosticSeverity.NONE;
-      final customSeverity = entry.value ?? DiagnosticSeverity.WARNING;
+    Map<String, DiagnosticSeverity?> customErrors,
+  ) {
+    return Map.fromEntries(
+      customErrors.entries.map((entry) {
+        final sdkSeverity = sdkErrors[entry.key] ?? DiagnosticSeverity.NONE;
+        final customSeverity = entry.value ?? DiagnosticSeverity.WARNING;
 
-      if (customSeverity == DiagnosticSeverity.NONE) {
-        if (sdkSeverity != DiagnosticSeverity.NONE &&
-            !_disabledRules.contains(entry.key)) {
-          print(
+        if (customSeverity == DiagnosticSeverity.NONE) {
+          if (sdkSeverity != DiagnosticSeverity.NONE &&
+              !_disabledRules.contains(entry.key)) {
+            print(
               'You should not disable this rule "${entry.key}" as it is active in the dart sdk.\n'
-              'SDK: $sdkSeverity | CUSTOM: $customSeverity');
-          exit(-1);
+              'SDK: $sdkSeverity | CUSTOM: $customSeverity',
+            );
+            exit(-1);
+          }
+          return null;
         }
-        return null;
-      }
-      if (sdkSeverity == customSeverity) return null;
+        if (sdkSeverity == customSeverity) return null;
 
-      return MapEntry(entry.key, customSeverity);
-    }).nonNulls);
+        return MapEntry(entry.key, customSeverity);
+      }).nonNulls,
+    );
   }
 
-  _writeFile(
-    fileName: 'dart',
-    errors: filterErrors(_dartRules),
-  );
+  _writeFile(fileName: 'dart', errors: filterErrors(_dartRules));
   _writeFile(
     fileName: 'dart_package',
-    include: 'dart',
-    errors: filterErrors(_packageRules),
+    include: ['dart'],
+    errors: filterErrors(_dartPackageRules),
   );
 
   _writeFile(
     fileName: 'flutter',
-    include: 'dart',
+    include: ['dart'],
     errors: filterErrors(_flutterRules),
   );
   _writeFile(
     fileName: 'flutter_package',
-    include: 'flutter',
-    errors: filterErrors(_packageRules),
+    include: ['dart_package', 'flutter'],
+    errors: filterErrors(_flutterPackageRules),
   );
 }
 
 void _writeFile({
   required String fileName,
-  String? include,
+  List<String> include = const [],
   required Map<String, DiagnosticSeverity> errors,
 }) {
-  final displayErrors = Map.fromEntries(errors.entries.map((e) {
-    return MapEntry(e.key, e.value.displayName);
-  }));
+  include = include.map((name) => 'package:mek_lints/$name.yaml').toList();
+
+  final displayErrors = Map.fromEntries(
+    errors.entries.map((e) {
+      return MapEntry(e.key, e.value.displayName);
+    }),
+  );
 
   final editor = YamlEditor(File('./tool/base.yaml').readAsStringSync());
 
-  if (include == null) {
+  if (include.isEmpty) {
     editor.remove(['include']);
   } else {
-    editor.update(['include'], 'package:mek_lints/$include.yaml');
+    editor.update(['include'], include.singleOrNull ?? include);
   }
   editor.update(['linter', 'rules'], displayErrors.keys.toList());
   editor.update(['analyzer', 'errors'], displayErrors);
 
-  File('./lib/$fileName.yaml').writeAsStringSync('$editor');
+  final file = File('./lib/$fileName.yaml');
+  file.writeAsStringSync('$editor');
+  print('Written: ${file.absolute}');
+}
+
+void _writeReadmeFile(Iterable<LinterRule> sdkRules) {
+  final file = File('RULES.md');
+  final buffer = StringBuffer();
+
+  _writeRulesTable(
+    buffer,
+    'Dart',
+    sdkRules.where((e) => _dartRules.containsKey(e.name)),
+  );
+  _writeRulesTable(
+    buffer,
+    'Package',
+    sdkRules.where((e) => _dartPackageRules.containsKey(e.name)),
+  );
+  _writeRulesTable(
+    buffer,
+    'Flutter',
+    sdkRules.where((e) => _flutterRules.containsKey(e.name)),
+  );
+  _writeRulesTable(
+    buffer,
+    'Package',
+    sdkRules.where((e) => _flutterPackageRules.containsKey(e.name)),
+  );
+  _writeRulesTable(
+    buffer,
+    'Unknown',
+    sdkRules.where((e) => !_allRules.containsKey(e.name)),
+  );
+
+  file.writeAsStringSync('$buffer');
+}
+
+void _writeRulesTable(
+  StringSink buffer,
+  String name,
+  Iterable<LinterRule> sdkRules,
+) {
+  final rows = sdkRules.map((sdkRule) {
+    final severity = _allRules[sdkRule.name] ?? DiagnosticSeverity.WARNING;
+    final url = 'https://dart.dev/tools/linter-rules/${sdkRule.name}';
+    return <String>[
+      '[${sdkRule.name}]($url)',
+      '$severity',
+      sdkRule.description,
+    ];
+  });
+  _writeTable(buffer, name, rows);
+}
+
+void _writeTable(
+  StringSink buffer,
+  String name,
+  Iterable<Iterable<String>> rows,
+) {
+  buffer.writeln('## $name');
+  buffer.writeln();
+
+  buffer.writeln('| NAME | SCOPE | SEVERITY | DESCRIPTION |');
+  buffer.writeln('| ---- | ----- | -------- | ----------- |');
+
+  for (final row in rows) {
+    buffer.writeln('| ${row.join(' | ')} |');
+  }
+  buffer.writeln();
 }

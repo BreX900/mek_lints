@@ -1,4 +1,9 @@
-
+## 7.0.0
+- enabled dart rules: `simplify_variable_pattern`, `var_with_no_type_annotation`
+- enabled dart package rules: `remove_deprecations_in_breaking_versions`
+- removed rules: `no_leading_underscores_for_library_prefixes```
+- moved from dart to package rules: `package_api_docs`, `package_names`, `package_prefixed_library_names`, `parameter_assignments`
+- moved from dart to flutter rules: `no_logic_in_create_state`
 
 ## 6.0.1
 - removed rule: `unsafe_variance`
